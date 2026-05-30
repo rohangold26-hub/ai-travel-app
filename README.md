@@ -42,6 +42,26 @@ Then open:
 http://localhost:4173
 ```
 
+## Git Workflow
+
+Use this routine whenever you finish a change:
+
+```powershell
+& "C:\Program Files\Git\cmd\git.exe" status
+& "C:\Program Files\Git\cmd\git.exe" add .
+& "C:\Program Files\Git\cmd\git.exe" commit -m "Describe the change"
+& "C:\Program Files\Git\cmd\git.exe" push
+```
+
+Useful checks:
+
+```powershell
+& "C:\Program Files\Git\cmd\git.exe" status --short
+& "C:\Program Files\Git\cmd\git.exe" log --oneline -5
+```
+
+If `status --short` shows nothing, the working tree is clean.
+
 ## Production Integration Targets
 
 - Flights and seat maps: Amadeus Flight Offers, Seatmap Display, Duffel Offers/Orders, or Sabre Offers/Orders.
