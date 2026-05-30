@@ -1,0 +1,349 @@
+{
+  "users": [
+    {
+      "id": "usr_001",
+      "name": "Awa Koné",
+      "tier": "Premium",
+      "homeAirport": "ABJ",
+      "dataConsent": true,
+      "preferences": {
+        "seat": "Hublot",
+        "cabin": "Économique",
+        "bags": 1,
+        "insurance": "Complète",
+        "arrivalRide": "Confort privé",
+        "hotelStyle": "Boutique",
+        "mobility": "VTC",
+        "budgetSensitivity": "meilleur rapport qualité-prix"
+      }
+    }
+  ],
+  "inventory": {
+    "flights": [
+      {
+        "id": "flt_abj_par_001",
+        "provider": "Compatible Amadeus",
+        "airline": "Air Côte d'Ivoire + partenaire",
+        "from": "ABJ",
+        "to": "CDG",
+        "depart": "2026-06-17T22:45:00Z",
+        "arrive": "2026-06-18T06:35:00Z",
+        "stops": 0,
+        "price": 612,
+        "score": 94,
+        "status": "À l'heure",
+        "carbonKg": 562
+      },
+      {
+        "id": "flt_abj_dxb_001",
+        "provider": "Compatible Duffel",
+        "airline": "Partenaire Emirates",
+        "from": "ABJ",
+        "to": "DXB",
+        "depart": "2026-06-20T14:30:00Z",
+        "arrive": "2026-06-21T05:55:00Z",
+        "stops": 1,
+        "price": 735,
+        "score": 89,
+        "status": "Porte d'embarquement en attente",
+        "carbonKg": 711
+      },
+      {
+        "id": "flt_abj_jfk_001",
+        "provider": "Compatible Sabre",
+        "airline": "Partenaire Delta",
+        "from": "ABJ",
+        "to": "JFK",
+        "depart": "2026-07-02T09:10:00Z",
+        "arrive": "2026-07-02T19:25:00Z",
+        "stops": 1,
+        "price": 846,
+        "score": 87,
+        "status": "À l'heure",
+        "carbonKg": 824
+      }
+    ],
+    "stays": [
+      {
+        "id": "stay_par_001",
+        "type": "Hôtel",
+        "name": "Maison Étoile Paris",
+        "city": "Paris",
+        "nightly": 176,
+        "rating": 4.7,
+        "dealScore": 96,
+        "image": "/assets/paris-morning.png",
+        "amenities": [
+          "Petit-déjeuner",
+          "Transfert aéroport",
+          "Espace de travail"
+        ]
+      },
+      {
+        "id": "stay_par_002",
+        "type": "Appartement",
+        "name": "Appartement premium Le Marais",
+        "city": "Paris",
+        "nightly": 139,
+        "rating": 4.6,
+        "dealScore": 91,
+        "image": "/assets/paris-morning.png",
+        "amenities": [
+          "Cuisine",
+          "Lave-linge",
+          "Arrivée autonome"
+        ]
+      },
+      {
+        "id": "stay_dxb_001",
+        "type": "Hôtel",
+        "name": "Suite Marina Skyline",
+        "city": "Dubaï",
+        "nightly": 221,
+        "rating": 4.8,
+        "dealScore": 94,
+        "image": "/assets/dubai-night.png",
+        "amenities": [
+          "Transfert aéroport",
+          "Piscine",
+          "Départ tardif"
+        ]
+      }
+    ],
+    "rides": [
+      {
+        "id": "ride_par_001",
+        "provider": "VTC premium",
+        "airport": "CDG",
+        "destination": "Centre de Paris",
+        "vehicle": "Berline confort",
+        "etaMinutes": 8,
+        "price": 48,
+        "included": ["Suivi des retards de vol", "Accueil par le chauffeur", "2 bagages"]
+      },
+      {
+        "id": "ride_par_002",
+        "provider": "Transfert privé",
+        "airport": "CDG",
+        "destination": "Centre de Paris",
+        "vehicle": "SUV exécutif",
+        "etaMinutes": 12,
+        "price": 82,
+        "included": ["Pancarte nominative", "60 min d'attente", "4 bagages"]
+      },
+      {
+        "id": "ride_dxb_001",
+        "provider": "Chauffeur aéroport",
+        "airport": "DXB",
+        "destination": "Dubai Marina",
+        "vehicle": "Berline de luxe",
+        "etaMinutes": 6,
+        "price": 64,
+        "included": ["Prise en charge au terminal", "Suivi de l'arrivée en direct", "Bouteille d'eau"]
+      }
+    ],
+    "destinations": [
+      {
+        "name": "Paris",
+        "time": "Matin",
+        "caption": "Vue dorée sur la Seine au petit-déjeuner",
+        "image": "/assets/paris-morning.png"
+      },
+      {
+        "name": "Dubaï",
+        "time": "Nuit",
+        "caption": "Arrivées premium face à la skyline",
+        "image": "/assets/dubai-night.png"
+      },
+      {
+        "name": "Santorin",
+        "time": "Matin",
+        "caption": "Séjours insulaires adaptés à votre style",
+        "image": "/assets/santorini-morning.png"
+      },
+      {
+        "name": "Maldives",
+        "time": "Nuit",
+        "caption": "Escapades privées, planifiées de bout en bout",
+        "image": "/assets/maldives-night.png"
+      }
+    ],
+    "packages": [
+      {
+        "id": "pkg_001",
+        "name": "Week-end malin à Paris",
+        "includes": [
+          "Vol",
+          "Hôtel",
+          "Assurance",
+          "VTC aéroport",
+          "Pass musées"
+        ],
+        "price": 1190,
+        "aiSavings": 214
+      },
+      {
+        "id": "pkg_002",
+        "name": "Séjour business premium à Dubaï",
+        "includes": [
+          "Vol",
+          "Hôtel",
+          "Choix du siège",
+          "Accès prioritaire",
+          "Assurance voyage"
+        ],
+        "price": 1585,
+        "aiSavings": 188
+      }
+    ],
+    "services": [
+      "Offres de vols",
+      "Hôtels",
+      "Séjours type Airbnb",
+      "Forfaits touristiques",
+      "VTC",
+      "Assurance",
+      "Choix du siège",
+      "Liste de documents visa",
+      "Paiements mobile money",
+      "Alertes SMS"
+    ]
+  },
+  "alerts": [
+    {
+      "id": "alt_1779991471764",
+      "type": "Vol",
+      "priority": "Élevée",
+      "message": "La porte a changé. Le voyageur a été prévenu et le trajet à l'arrivée est prêt à être ajusté.",
+      "channel": "Notification + SMS"
+    },
+    {
+      "id": "alt_001",
+      "type": "Vol",
+      "priority": "Élevée",
+      "message": "Le vol ABJ-CDG est toujours à l'heure. L'enregistrement ouvre dans 4 heures.",
+      "channel": "Notification + SMS"
+    },
+    {
+      "id": "alt_002",
+      "type": "Prix",
+      "priority": "Moyenne",
+      "message": "Le forfait Paris a baissé de 8 % par rapport à hier.",
+      "channel": "Notification"
+    }
+  ],
+  "adminMetrics": {
+    "automationRate": 0.9,
+    "humanEscalationRate": 0.1,
+    "monthlyBookings": 428,
+    "averageSavings": 16.8,
+    "paymentSuccess": 97.4,
+    "smsDelivery": 98.6,
+    "customerSatisfaction": 4.8,
+    "supplierHealth": 92
+  },
+  "operationsAgents": [
+    {
+      "id": "agent_supervisor",
+      "name": "Agent Superviseur",
+      "role": "Coordination générale",
+      "status": "Actif",
+      "autonomyLevel": 2,
+      "cadence": "Toutes les 2 heures",
+      "scope": ["Site web", "Application mobile", "Back-office"],
+      "mission": "Coordonne les agents, consolide les rapports, priorise les risques et valide les publications sensibles.",
+      "permissions": ["Lire les rapports", "Prioriser les tâches", "Demander une validation humaine"],
+      "guardrails": ["Ne publie pas de changement critique sans validation", "Escalade les paiements, les données personnelles et les incidents de sécurité"],
+      "tools": ["Tableau de bord", "Journal d'activité", "File de validation"],
+      "kpis": ["SLA agents", "Tâches bloquées", "Risques ouverts"],
+      "lastRun": "2026-05-30T12:45:00Z",
+      "nextAction": "Vérifier les alertes critiques et répartir les actions du jour.",
+      "report": "Tous les agents sont opérationnels. Deux actions demandent une validation humaine avant publication."
+    },
+    {
+      "id": "agent_content",
+      "name": "Agent Contenu",
+      "role": "Contenu, pages et traductions",
+      "status": "Actif",
+      "autonomyLevel": 2,
+      "cadence": "Chaque jour",
+      "scope": ["Pages marketing", "Fiches offres", "FAQ", "Traductions"],
+      "mission": "Met à jour les textes du site et de l'application, prépare les articles, les descriptions de produits, les traductions et les optimisations SEO on-page.",
+      "permissions": ["Créer des brouillons", "Corriger les fautes", "Proposer des titres SEO"],
+      "guardrails": ["Validation requise pour les prix, les promesses commerciales et les informations légales"],
+      "tools": ["CMS", "Bibliothèque de contenus", "Checklist SEO"],
+      "kpis": ["Pages mises à jour", "Brouillons prêts", "Taux de validation"],
+      "lastRun": "2026-05-30T11:30:00Z",
+      "nextAction": "Préparer une FAQ sur les paiements mobile money et les alertes SMS.",
+      "report": "Trois textes courts peuvent être améliorés afin de clarifier l'assurance, les VTC et les documents de visa."
+    },
+    {
+      "id": "agent_technical",
+      "name": "Agent Technique",
+      "role": "Maintenance et qualite",
+      "status": "Surveillance",
+      "autonomyLevel": 2,
+      "cadence": "Toutes les heures",
+      "scope": ["API", "Formulaires", "Performance", "Dependances"],
+      "mission": "Surveille les erreurs, les temps de réponse, les formulaires cassés, les dépendances et les problèmes d'hébergement.",
+      "permissions": ["Lancer des vérifications", "Créer des tickets", "Proposer des correctifs"],
+      "guardrails": ["Ne déploie pas sans validation", "Escalade les pannes de paiement et d'authentification"],
+      "tools": ["Health checks", "Logs serveur", "Tests formulaires"],
+      "kpis": ["Uptime", "Erreurs API", "Temps de chargement"],
+      "lastRun": "2026-05-30T12:55:00Z",
+      "nextAction": "Tester la connexion, la recherche de voyage, le paiement démo et la création d'alerte.",
+      "report": "API disponible. La surveillance recommande un test visuel après chaque changement frontend."
+    },
+    {
+      "id": "agent_seo",
+      "name": "Agent SEO / Analytics",
+      "role": "Trafic et croissance organique",
+      "status": "Actif",
+      "autonomyLevel": 1,
+      "cadence": "Chaque lundi",
+      "scope": ["Search Console", "Analytics", "Mots-clés", "Pages en baisse"],
+      "mission": "Suit les performances SEO, détecte les pages en baisse, propose des mots-clés et des opportunités de contenu.",
+      "permissions": ["Analyser les données", "Préparer des recommandations", "Créer des briefs SEO"],
+      "guardrails": ["Aucune modification de tracking sans validation", "Respect des consentements analytics"],
+      "tools": ["Google Search Console", "Analytics", "Audit des métadonnées"],
+      "kpis": ["Clics organiques", "CTR", "Pages en progression"],
+      "lastRun": "2026-05-30T09:00:00Z",
+      "nextAction": "Ajouter les balises méta prioritaires pour la version web.",
+      "report": "Les pages voyages premium, VTC aéroport et forfaits touristiques sont les meilleures opportunités SEO."
+    },
+    {
+      "id": "agent_support",
+      "name": "Agent Support / Leads",
+      "role": "Clients, leads et FAQ",
+      "status": "Actif",
+      "autonomyLevel": 2,
+      "cadence": "Toutes les 30 minutes",
+      "scope": ["Formulaires", "E-mails", "FAQ", "Demandes simples"],
+      "mission": "Trie les demandes clients, qualifie les leads, prépare les réponses et escalade les cas sensibles.",
+      "permissions": ["Classer les demandes", "Rédiger des réponses", "Créer des suivis"],
+      "guardrails": ["Ne confirme pas de remboursement, visa ou paiement sans humain", "Escalade plaintes et urgences"],
+      "tools": ["Inbox", "CRM", "Modèles de réponse"],
+      "kpis": ["Temps de réponse", "Leads qualifiés", "Escalades"],
+      "lastRun": "2026-05-30T12:50:00Z",
+      "nextAction": "Créer trois modèles de réponse pour les devis, les modifications de vol et l'assurance.",
+      "report": "Les demandes récurrentes concernent les forfaits Paris, les paiements et les transferts aéroport."
+    },
+    {
+      "id": "agent_security",
+      "name": "Agent Sécurité",
+      "role": "Sécurité, sauvegardes et accès",
+      "status": "Surveillance",
+      "autonomyLevel": 1,
+      "cadence": "Chaque nuit",
+      "scope": ["SSL", "Sauvegardes", "Accès admin", "Scans basiques"],
+      "mission": "Vérifie les certificats, les sauvegardes, les accès administrateur, les dépendances sensibles et les alertes suspectes.",
+      "permissions": ["Auditer", "Alerter", "Recommander des rotations d'accès"],
+      "guardrails": ["Ne supprime aucun accès sans validation", "Escalade toute fuite de données potentielle"],
+      "tools": ["Scan des dépendances", "Checklist SSL", "Journal des accès"],
+      "kpis": ["Alertes critiques", "Sauvegardes valides", "Comptes à risque"],
+      "lastRun": "2026-05-30T02:00:00Z",
+      "nextAction": "Vérifier que les variables sensibles restent hors du dépôt et que les sauvegardes sont planifiées.",
+      "report": "Aucune alerte critique simulée. Les secrets doivent rester dans .env en production."
+    }
+  ]
+}
