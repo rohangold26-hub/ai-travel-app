@@ -1,6 +1,7 @@
 const state = {
   tab: "home",
   data: null,
+  airports: [],
   search: {
     from: "ABJ",
     to: "CDG",
@@ -36,7 +37,12 @@ async function api(path, options = {}) {
 }
 
 async function load() {
-  state.data = await api("/api/bootstrap");
+  const [bootstrap, airports] = await Promise.all([
+    api("/api/bootstrap"),
+    api("/api/airports")
+  ]);
+  state.data = bootstrap;
+  state.airports = airports.airports || [];
   render();
 }
 
@@ -100,8 +106,8 @@ function home() {
       <div class="panel">
         <h2>Préparer un voyage complet</h2>
         <div class="search-grid">
-          ${input("from", "Départ")}
-          ${input("to", "Arrivée")}
+          ${airportSelect("from", "Départ")}
+          ${airportSelect("to", "Arrivée")}
           ${input("date", "Date", "date")}
           ${input("travelers", "Voyageurs", "number")}
           ${select("cabin", "Cabine", ["Économique", "Économie Premium", "Affaires", "Première"])}
@@ -146,6 +152,26 @@ function input(id, label, type = "text") {
       <input id="${id}" type="${type}" value="${state.search[id]}" />
     </label>
   `;
+}
+
+function airportSelect(id, label) {
+  return `
+    <label>
+      ${label}
+      <select id="${id}">
+        ${state.airports.map((airport) => `
+          <option value="${airport.code}" ${state.search[id] === airport.code ? "selected" : ""}>
+            ${airportLabel(airport)}
+          </option>
+        `).join("")}
+      </select>
+    </label>
+  `;
+}
+
+function airportLabel(airport) {
+  const city = airport.city ? `${airport.city} - ` : "";
+  return `${airport.code} - ${city}${airport.name}, ${airport.country}`;
 }
 
 function select(id, label, options) {

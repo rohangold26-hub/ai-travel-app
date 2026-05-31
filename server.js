@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicDir = path.join(__dirname, "public");
 const dbPath = path.join(__dirname, "database", "travel-data.json");
+const airportsPath = path.join(__dirname, "database", "airports.json");
 const port = Number(process.env.PORT || 4173);
 
 const providerStatus = {
@@ -33,6 +34,10 @@ const providerStatus = {
 
 async function readDb() {
   return JSON.parse(await fs.readFile(dbPath, "utf8"));
+}
+
+async function readAirports() {
+  return JSON.parse(await fs.readFile(airportsPath, "utf8"));
 }
 
 async function writeDb(data) {
@@ -134,6 +139,10 @@ async function handleApi(req, res) {
       stays: scoreStays(db, user, user.dataConsent),
       rides: scoreRides(db, user, user.dataConsent)
     });
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/airports") {
+    return json(res, 200, await readAirports());
   }
 
   if (req.method === "POST" && url.pathname === "/api/auth") {

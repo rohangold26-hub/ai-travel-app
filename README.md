@@ -28,6 +28,16 @@ Humans own high-risk decisions:
 - Complex customer complaints.
 - Supplier negotiation and final business strategy.
 
+## Airport Data
+
+The departure and arrival fields use a generated global airport list from the public OurAirports dataset. The app keeps open airports with IATA codes in `database/airports.json`, which currently contains 9,057 airport options.
+
+To regenerate the JSON after downloading a fresh `airports.csv` into `database/`, run:
+
+```powershell
+& "C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe" scripts\generate-airports.mjs
+```
+
 ## Run Locally
 
 Use the bundled Node runtime if system Node or npm is unavailable:
