@@ -6,7 +6,9 @@ const state = {
   search: {
     from: "ABJ",
     to: "CDG",
+    tripType: "round-trip",
     date: "2026-06-17",
+    returnDate: "2026-06-24",
     travelers: 1,
     cabin: "Économique",
     seat: "Hublot",
@@ -151,7 +153,9 @@ function travelView() {
           <div class="search-grid">
             ${airportSelect("from", "Départ")}
             ${airportSelect("to", "Arrivée")}
+            ${select("tripType", "Type de vol", [["round-trip", "Aller-retour"], ["one-way", "Aller simple"]])}
             ${input("date", "Date", "date")}
+            ${state.search.tripType === "round-trip" ? input("returnDate", "Retour", "date") : ""}
             ${input("travelers", "Voyageurs", "number")}
             ${select("cabin", "Cabine", ["Économique", "Économie Premium", "Affaires", "Première"])}
             ${select("seat", "Siège", ["Hublot", "Couloir", "Espace supplémentaire pour les jambes", "Sans préférence"])}
@@ -253,7 +257,11 @@ function select(id, labelText, options, className = "") {
     <label class="${className}">
       ${labelText}
       <select id="${id}">
-        ${options.map((option) => `<option ${state.search[id] === option ? "selected" : ""}>${option}</option>`).join("")}
+        ${options.map((option) => {
+          const value = Array.isArray(option) ? option[0] : option;
+          const text = Array.isArray(option) ? option[1] : option;
+          return `<option value="${value}" ${state.search[id] === value ? "selected" : ""}>${text}</option>`;
+        }).join("")}
       </select>
     </label>
   `;
@@ -568,8 +576,15 @@ function bind() {
     }
   });
 
+  document.querySelector("#tripType")?.addEventListener("change", () => {
+    readSearchForm();
+    if (state.search.tripType === "one-way") state.search.returnDate = "";
+    render();
+  });
+
   document.querySelector("#searchBtn")?.addEventListener("click", async () => {
     readSearchForm();
+    if (state.search.tripType === "one-way") state.search.returnDate = "";
     const result = await api("/api/search", { method: "POST", body: state.search });
     state.data.deals = result.flights;
     state.data.stays = result.stays;
