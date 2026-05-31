@@ -25,6 +25,24 @@ const paymentStatusLabel = (status) => ({
   provider_intent_required: "intention de paiement à créer chez le fournisseur"
 })[status] || status;
 const stopsLabel = (stops) => (stops === 0 ? "sans escale" : `${stops} escale${stops > 1 ? "s" : ""}`);
+const hubAirportCodes = new Set(["ABJ", "AMS", "ATL", "CDG", "DFW", "DOH", "DXB", "FCO", "FRA", "HND", "IST", "JFK", "LAX", "LHR", "MAD", "MIA", "NRT", "ORD", "ORY", "SFO", "SIN"]);
+const preferredCityAirports = {
+  abidjan: "ABJ",
+  amsterdam: "AMS",
+  atlanta: "ATL",
+  dubai: "DXB",
+  istanbul: "IST",
+  london: "LHR",
+  losangeles: "LAX",
+  madrid: "MAD",
+  miami: "MIA",
+  newyork: "JFK",
+  paris: "CDG",
+  rome: "FCO",
+  sanfrancisco: "SFO",
+  singapore: "SIN",
+  tokyo: "HND"
+};
 
 async function api(path, options = {}) {
   const response = await fetch(path, {
@@ -155,23 +173,73 @@ function input(id, label, type = "text") {
 }
 
 function airportSelect(id, label) {
+  const listId = `${id}AirportList`;
   return `
     <label>
       ${label}
-      <select id="${id}">
+      <input
+        id="${id}"
+        list="${listId}"
+        value="${airportInputValue(state.search[id])}"
+        placeholder="Tapez une ville, un pays, un code ou un aéroport"
+        autocomplete="off"
+      />
+      <datalist id="${listId}">
         ${state.airports.map((airport) => `
-          <option value="${airport.code}" ${state.search[id] === airport.code ? "selected" : ""}>
-            ${airportLabel(airport)}
-          </option>
+          <option value="${airportLabel(airport)}"></option>
         `).join("")}
-      </select>
+      </datalist>
     </label>
   `;
+}
+
+function airportInputValue(code) {
+  const airport = state.airports.find((item) => item.code === code);
+  return airport ? airportLabel(airport) : code;
 }
 
 function airportLabel(airport) {
   const city = airport.city ? `${airport.city} - ` : "";
   return `${airport.code} - ${city}${airport.name}, ${airport.country}`;
+}
+
+function airportCode(value) {
+  const trimmed = String(value || "").trim();
+  const codeMatch = trimmed.match(/^([A-Z0-9]{3})\b/i);
+  if (codeMatch && state.airports.some((item) => item.code === codeMatch[1].toUpperCase())) {
+    return codeMatch[1].toUpperCase();
+  }
+
+  const normalized = normalizeAirportSearch(trimmed);
+  const preferredCode = preferredCityAirports[normalized.replace(/\s+/g, "")];
+  if (preferredCode && state.airports.some((item) => item.code === preferredCode)) return preferredCode;
+
+  const airport = state.airports.find((item) => normalizeAirportSearch(airportLabel(item)) === normalized)
+    || bestAirportMatch((item) => normalizeAirportSearch(item.city).startsWith(normalized), normalized)
+    || bestAirportMatch((item) => normalizeAirportSearch(item.name).startsWith(normalized), normalized)
+    || bestAirportMatch((item) => normalizeAirportSearch(airportLabel(item)).includes(normalized), normalized);
+  return airport?.code || trimmed.toUpperCase();
+}
+
+function bestAirportMatch(predicate, query) {
+  return state.airports
+    .filter(predicate)
+    .sort((a, b) => airportPriority(b, query) - airportPriority(a, query) || a.code.localeCompare(b.code))[0];
+}
+
+function airportPriority(airport, query) {
+  const typeScore = { large_airport: 30, medium_airport: 20, small_airport: 10 }[airport.type] || 0;
+  const serviceScore = airport.scheduled === "yes" ? 15 : 0;
+  const nameScore = normalizeAirportSearch(airport.name).startsWith(query) ? 20 : 0;
+  const hubScore = hubAirportCodes.has(airport.code) ? 40 : 0;
+  return typeScore + serviceScore + nameScore + hubScore;
+}
+
+function normalizeAirportSearch(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
 }
 
 function select(id, label, options) {
@@ -438,6 +506,8 @@ function readSearchForm() {
     const field = document.querySelector(`#${key}`);
     if (field) state.search[key] = field.value;
   }
+  state.search.from = airportCode(state.search.from);
+  state.search.to = airportCode(state.search.to);
 }
 
 function bind() {
